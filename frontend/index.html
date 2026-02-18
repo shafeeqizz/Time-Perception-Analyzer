@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Time Perception Analyzer</title>
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+
+        <div class="container">
+            <header>
+                <div>
+                    <h1>Time Perception Analyzer</h1>
+                    <p class="subtitle">Track estimation bias and see how difficulty, mood and distractions affect accuracy.</p>
+                </div>
+            </header>
+
+            <div class="grid grid-2">
+                <section class="card">
+                    <h2>Add Entry</h2>
+                    <form id="entry-form">
+                        <input class="full" type="text" id="title" placeholder="Title (e.g., Math revision)" required>
+                        <input type="number" id="estimated" placeholder="Estimated (min)" min="1" required>
+                        <input type="number" id="actual" placeholder="Actual (min)" min="1" required>
+                        <input type="number" id="difficulty" placeholder="Difficulty (1–5)" min="1" max="5" required>
+                        <input type="number" id="mood" placeholder="Mood (1–5)" min="1" max="5" required>
+                        <input type="number" id="distractions" placeholder="Distractions (0–5)" min="0" max="5" required>
+                        <button class="full" id="submit-btn" type="submit">Add entry</button>
+                        <div class="small full">Tip: add at least 5 entries to make correlations meaningful.</div>
+                    </form>
+                </section>
+
+                <section class="card">
+                    <h2>Summary</h2>
+                    <div class="kpis" id="summary-kpis"></div>
+                    <h2>Recommendations</h2>
+                    <ul id="recommendations-list"></ul>
+                </section>
+            </div>
+
+            <section class="card">
+                <h2>Trends</h2>
+                <canvas id="trendChart"></canvas>
+            </section>
+
+            <section class="card">
+                <h2>Correlations</h2>
+                <canvas id="scatterChart" style="margin-top:20px;"></canvas>
+                <div id="correlation-data" class="small"></div>
+            </section>
+
+            <section class="card">
+                <h2>Recent Entries</h2>
+                <div class="table-wrap">
+                    <table id="entries-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Title</th>
+                                <th>Est</th>
+                                <th>Act</th>
+                                <th>Diff</th>
+                                <th>Mood</th>
+                                <th>Distr.</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <div id="toast" class="toast" aria-live="polite"></div>
+
+        <script src="js/api.js"></script>
+        <script src="js/dashboard.js"></script>
+
+    </body>
+</html>
